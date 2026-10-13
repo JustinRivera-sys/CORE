@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crear cuenta</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="tarjeta">
+    <h1>Crea tu cuenta</h1>
+    <p class="subtitulo">Te enviaremos un correo para verificarla</p>
+
+    <form id="form-registro">
+        <label>Usuario</label>
+        <input type="text" id="username" required minlength="3" maxlength="20"
+               pattern="[a-zA-Z0-9_]+" title="Solo letras, números y guion bajo">
+
+        <label>Correo</label>
+        <input type="email" id="email" required autocomplete="email">
+
+        <label>Contraseña</label>
+        <input type="password" id="password" required minlength="8" autocomplete="new-password">
+
+        <button type="submit" id="btn-submit">Crear cuenta</button>
+    </form>
+
+    <div class="mensaje-error" id="msg-error"></div>
+    <div class="mensaje-ok" id="msg-ok"></div>
+
+    <p class="enlace">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+</div>
+
+<script>
+const form = document.getElementById('form-registro');
+const msgError = document.getElementById('msg-error');
+const msgOk = document.getElementById('msg-ok');
+const btn = document.getElementById('btn-submit');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msgError.style.display = 'none';
+    msgOk.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Creando...';
+
+    try {
+        const resp = await fetch('/api/register', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+            }),
+        });
+        const datos = await resp.json();
+        if (!resp.ok) {
+            msgError.textContent = datos.detail || 'Error al crear la cuenta.';
+            msgError.style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = 'Crear cuenta';
+            return;
+        }
+        msgOk.textContent = datos.mensaje;
+        msgOk.style.display = 'block';
+        form.reset();
+        btn.textContent = 'Cuenta creada';
+    } catch (err) {
+        msgError.textContent = 'No se pudo conectar con el servidor.';
+        msgError.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Crear cuenta';
+    }
+});
+</script>
+</body>
+</html>

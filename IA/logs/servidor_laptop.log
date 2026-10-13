@@ -1,0 +1,199 @@
+INFO:     Started server process [7516]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8100 (Press CTRL+C to quit)
+INFO:     127.0.0.1:58602 - "GET /api/salud HTTP/1.1" 200 OK
+INFO:     192.168.10.2:48218 - "GET /api/salud HTTP/1.1" 200 OK
+INFO:     192.168.10.2:48230 - "GET /api/saludo_inicial HTTP/1.1" 200 OK
+INFO:     192.168.10.2:38264 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 3.18s -> 'Hola corb, bien y tu?'
+[tiempos] lógica + Ollama: 4.52s
+[tiempos] síntesis de audio: 0.52s
+[tiempos] TOTAL: 8.22s
+INFO:     192.168.10.2:59996 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:35982 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 6.23s -> 'que hora es'
+[tiempos] lógica + Ollama: 0.84s
+[tiempos] síntesis de audio: 0.45s
+[tiempos] TOTAL: 7.53s
+INFO:     192.168.10.2:57264 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:49052 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [7516]
+INFO:     Started server process [60260]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8100 (Press CTRL+C to quit)
+INFO:     127.0.0.1:52094 - "GET /api/salud HTTP/1.1" 200 OK
+INFO:     192.168.10.2:34722 - "GET /api/salud HTTP/1.1" 200 OK
+INFO:     192.168.10.2:34724 - "GET /api/saludo_inicial HTTP/1.1" 200 OK
+INFO:     192.168.10.2:58710 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 3.10s -> 'Hola.'
+[tiempos] lógica + Ollama: 6.83s
+[tiempos] síntesis de audio: 0.19s
+[tiempos] TOTAL: 10.12s
+INFO:     192.168.10.2:55898 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:52608 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 37.24s -> '¡Qué suerte!'
+[tiempos] lógica + Ollama: 4.06s
+[tiempos] síntesis de audio: 0.29s
+[tiempos] TOTAL: 41.59s
+INFO:     192.168.10.2:52612 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:53588 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 5.76s -> 'por favor'
+[tiempos] lógica + Ollama: 3.87s
+[tiempos] síntesis de audio: 0.31s
+[tiempos] TOTAL: 9.94s
+INFO:     192.168.10.2:34892 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:59384 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 0.00s -> ''
+INFO:     192.168.10.2:49880 - "POST /api/turno HTTP/1.1" 400 Bad Request
+[tiempos] transcripción: 1.83s -> 'Que es un mamífero.'
+[tiempos] lógica + Ollama: 1.87s
+[tiempos] síntesis de audio: 0.44s
+[tiempos] TOTAL: 4.14s
+INFO:     192.168.10.2:49888 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:44874 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [60260]
+INFO:     Started server process [2269]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8100 (Press CTRL+C to quit)
+INFO:     192.168.10.2:34588 - "GET /api/salud HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55732 - "GET /api/salud HTTP/1.1" 200 OK
+INFO:     192.168.10.2:34590 - "GET /api/saludo_inicial HTTP/1.1" 200 OK
+INFO:     192.168.10.2:53464 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 3.19s -> 'Si no encuentro, te puedes arranquecer.'
+[tiempos] lógica + Ollama: 4.05s
+[tiempos] síntesis de audio: 0.24s
+[tiempos] TOTAL: 7.48s
+INFO:     192.168.10.2:53472 - "POST /api/turno HTTP/1.1" 200 OK
+[tiempos] transcripción: 3.71s -> ''
+INFO:     192.168.10.2:41320 - "POST /api/turno HTTP/1.1" 400 Bad Request
+INFO:     192.168.10.2:41322 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 0.00s -> ''
+INFO:     192.168.10.2:58420 - "POST /api/turno HTTP/1.1" 400 Bad Request
+[tiempos] transcripción: 1.93s -> 'para levantar el servicio, si tiene que tener un buen fin'
+[tiempos] lógica + Ollama: 4.30s
+[tiempos] síntesis de audio: 0.42s
+[tiempos] TOTAL: 6.65s
+INFO:     192.168.10.2:50738 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:41826 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.92s -> 'Voy a meter o puedo hacer un meter, ¿no?'
+[tiempos] lógica + Ollama: 4.30s
+[tiempos] síntesis de audio: 0.30s
+[tiempos] TOTAL: 6.52s
+INFO:     192.168.10.2:51482 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:34400 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55238 - "GET /api/salud HTTP/1.1" 200 OK
+[tiempos] transcripción: 3.15s -> 'y aquí en el panón'
+[tiempos] lógica + Ollama: 6.44s
+[tiempos] síntesis de audio: 0.13s
+[tiempos] TOTAL: 9.73s
+INFO:     192.168.10.2:43640 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:59232 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 0.00s -> ''
+INFO:     192.168.10.2:44120 - "POST /api/turno HTTP/1.1" 400 Bad Request
+INFO:     192.168.10.2:44134 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.72s -> ''
+INFO:     192.168.10.2:37604 - "POST /api/turno HTTP/1.1" 400 Bad Request
+[tiempos] transcripción: 0.01s -> ''
+INFO:     192.168.10.2:46048 - "POST /api/turno HTTP/1.1" 400 Bad Request
+INFO:     192.168.10.2:46060 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 4.77s -> ''
+INFO:     192.168.10.2:46074 - "POST /api/turno HTTP/1.1" 400 Bad Request
+[tiempos] transcripción: 1.86s -> ''
+INFO:     192.168.10.2:44476 - "POST /api/turno HTTP/1.1" 400 Bad Request
+INFO:     192.168.10.2:44484 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 0.00s -> ''
+INFO:     192.168.10.2:50948 - "POST /api/turno HTTP/1.1" 400 Bad Request
+INFO:     192.168.10.2:50958 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 0.01s -> ''
+INFO:     192.168.10.2:50962 - "POST /api/turno HTTP/1.1" 400 Bad Request
+[tiempos] transcripción: 0.00s -> ''
+INFO:     192.168.10.2:33528 - "POST /api/turno HTTP/1.1" 400 Bad Request
+INFO:     192.168.10.2:33544 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.72s -> 'entonces está localmente'
+[tiempos] lógica + Ollama: 6.64s
+[tiempos] síntesis de audio: 0.11s
+[tiempos] TOTAL: 8.47s
+INFO:     192.168.10.2:53116 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:48304 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.77s -> 'como le mete funcionar.'
+[tiempos] lógica + Ollama: 4.19s
+[tiempos] síntesis de audio: 0.56s
+[tiempos] TOTAL: 6.52s
+INFO:     192.168.10.2:52806 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:43130 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.72s -> ''
+INFO:     192.168.10.2:53372 - "POST /api/turno HTTP/1.1" 400 Bad Request
+INFO:     192.168.10.2:53384 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 10.48s -> 'No creo que voy a responder, solamente va a decir el lenguaje pequeño.'
+[tiempos] lógica + Ollama: 6.64s
+[tiempos] síntesis de audio: 0.16s
+[tiempos] TOTAL: 17.28s
+INFO:     192.168.10.2:55304 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:33784 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.88s -> '¿Segurado? ¿Por qué no...?'
+[tiempos] lógica + Ollama: 1.00s
+[tiempos] síntesis de audio: 0.11s
+[tiempos] TOTAL: 3.00s
+INFO:     192.168.10.2:33976 - "POST /api/turno HTTP/1.1" 200 OK
+[tiempos] transcripción: 7.21s -> 'por el punto.'
+[tiempos] lógica + Ollama: 28.63s
+[tiempos] síntesis de audio: 0.11s
+[tiempos] TOTAL: 35.95s
+INFO:     192.168.10.2:32936 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:38062 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.82s -> ''
+INFO:     192.168.10.2:41636 - "POST /api/turno HTTP/1.1" 400 Bad Request
+[tiempos] transcripción: 1.96s -> ''
+INFO:     192.168.10.2:40574 - "POST /api/turno HTTP/1.1" 400 Bad Request
+INFO:     192.168.10.2:40590 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 8.21s -> '¿Esta es la de la tabaíska y la de la enaca?'
+[tiempos] lógica + Ollama: 6.75s
+[tiempos] síntesis de audio: 0.23s
+[tiempos] TOTAL: 15.19s
+INFO:     192.168.10.2:38534 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:52288 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.86s -> 'y vamos aquí en todo esto diste el valencia'
+[tiempos] lógica + Ollama: 6.55s
+[tiempos] síntesis de audio: 0.20s
+[tiempos] TOTAL: 8.62s
+INFO:     192.168.10.2:52014 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:54220 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.72s -> ''
+INFO:     192.168.10.2:54474 - "POST /api/turno HTTP/1.1" 400 Bad Request
+INFO:     192.168.10.2:54484 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 7.36s -> 'que les pasara el dedo.'
+[tiempos] lógica + Ollama: 6.57s
+[tiempos] síntesis de audio: 0.12s
+[tiempos] TOTAL: 14.05s
+INFO:     192.168.10.2:53966 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:40012 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 3.25s -> 'mi pelo no pide'
+[tiempos] lógica + Ollama: 6.61s
+[tiempos] síntesis de audio: 0.15s
+[tiempos] TOTAL: 10.01s
+INFO:     192.168.10.2:46982 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:34470 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.88s -> ''
+INFO:     192.168.10.2:51216 - "POST /api/turno HTTP/1.1" 400 Bad Request
+INFO:     192.168.10.2:51222 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.79s -> 'no, osea, si tengo papel'
+[tiempos] lógica + Ollama: 3.56s
+[tiempos] síntesis de audio: 0.19s
+[tiempos] TOTAL: 5.54s
+INFO:     192.168.10.2:54438 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:33520 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK
+[tiempos] transcripción: 1.78s -> 'con el proyecto de desarrollo.'
+[tiempos] lógica + Ollama: 6.63s
+[tiempos] síntesis de audio: 0.21s
+[tiempos] TOTAL: 8.63s
+INFO:     192.168.10.2:57208 - "POST /api/turno HTTP/1.1" 200 OK
+INFO:     192.168.10.2:38640 - "GET /api/revisar_recordatorios HTTP/1.1" 200 OK

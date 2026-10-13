@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CORE</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="chat-body">
+<div class="app-contenedor">
+    <div class="fondo-sidebar" id="fondo-sidebar"></div>
+    <div class="sidebar" id="sidebar">
+        <button class="btn-nuevo-chat" id="btn-nuevo">+ Nuevo chat</button>
+        <div class="lista-conversaciones" id="lista-conversaciones"></div>
+    </div>
+
+    <div class="chat-contenedor">
+        <div class="chat-header">
+            <div class="chat-header-titulo">
+                <button class="btn-hamburguesa" id="btn-hamburguesa" title="Conversaciones">☰</button>
+                <div class="chat-header-logo">C</div>
+                <h2 id="titulo-usuario">CORE</h2>
+            </div>
+            <div class="chat-header-botones">
+                <span class="saludo-usuario" id="saludo-usuario"></span>
+                <button id="btn-logout">Cerrar sesión</button>
+            </div>
+        </div>
+
+        <div class="mensajes" id="mensajes">
+            <div class="mensajes-interior" id="mensajes-interior"></div>
+        </div>
+
+        <div class="input-zona-exterior">
+            <div class="input-zona">
+                <textarea id="input-mensaje" placeholder="Escribe tu mensaje..." rows="1"></textarea>
+                <button class="btn-enviar" id="btn-enviar" title="Enviar">➤</button>
+            </div>
+            <p class="nota-input">CORE puede cometer errores. Verifica la información importante.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+const mensajesInterior = document.getElementById('mensajes-interior');
+const mensajesDiv = document.getElementById('mensajes');
+const input = document.getElementById('input-mensaje');
+const btnEnviar = document.getElementById('btn-enviar');
+const btnLogout = document.getElementById('btn-logout');
+const btnNuevo = document.getElementById('btn-nuevo');
+const listaConversaciones = document.getElementById('lista-conversaciones');
+const btnHamburguesa = document.getElementById('btn-hamburguesa');
+const sidebar = document.getElementById('sidebar');
+const fondoSidebar = document.getElementById('fondo-sidebar');
+
+function abrirSidebar() {
+    sidebar.classList.add('abierta');
+    fondoSidebar.classList.add('visible');
+}
+function cerrarSidebar() {
+    sidebar.classList.remove('abierta');
+    fondoSidebar.classList.remove('visible');
+}
+btnHamburguesa.addEventListener('click', () => {
+    sidebar.classList.contains('abierta') ? cerrarSidebar() : abrirSidebar();
+});
+fondoSidebar.addEventListener('click', cerrarSidebar);
+
+let historial = [];
+let conversacionActualId = null;
+
+// ---------- Renderizador de markdown ligero (sin dependencias externas) ----------
+
+function escaparHtml(texto) {
+    return texto
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+function renderizarMarkdownLigero(texto) {
+    const bloques = [];
+    let resultado = texto.replace(/```(\w*)\n?([\s\S]*?)```/g, (_, lenguaje, codigo) => {
+        const idx = bloques.length;
+        bloques.push({ lenguaje, codigo: codigo.replace(/\n$/, '') });
+        return `\u0000BLOQUE${idx}\u0000`;
+    });
+
+    resultado = escaparHtml(resultado);
+    resultado = resultado.replace(/`([^`\n]+)`/g, '<code class="inline-code">$1</code>');
+    resultado = resultado.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    resultado = resultado.replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '<em>$1</em>');
+
+    const lineas = resultado.split('\n');
+    let html = '';
+    let enListaUl = false;
+    let enListaOl = false;
+    for (const linea of lineas) {
+        const esUl = /^\s*-\s+(.*)/.exec(linea);
+        const esOl = /^\s*\d+\.\s+(.*)/.exec(linea);
+        if (esUl) {
+            if (!enListaUl) { html += '<ul>'; enListaUl = true; }
+            if (enListaOl) { html += '</ol>'; enListaOl = false; }
+            html += `<li>${esUl[1]}</li>`;
+            continue;
+        }
+        if (esOl) {
+            if (!enListaOl) { html += '<ol>'; enListaOl = true; }
+            if (enListaUl) { html += '</ul>'; enListaUl = false; }
+            html += `<li>${esOl[1]}</li>`;
+            continue;
+        }
+        if (enListaUl) { html += '</ul>'; enListaUl = false; }
+        if (enListaOl) { html += '</ol>'; enListaOl = false; }
+        html += linea + '\n';
+    }
+    if (enListaUl) html += '</ul>';
+    if (enListaOl) html += '</ol>';
+    resultado = html;
+    resultado = resultado.replace(/\n(?!<\/?(ul|ol|li))/g, '<br>');
+
+    resultado = resultado.replace(/(<br>)?\u0000BLOQUE(\d+)\u0000(<br>)?/g, (_, br1, idx) => {
+        const bloque = bloques[idx];
+        const codigoEscapado = escaparHtml(bloque.codigo);
+        return `<div class="bloque-codigo">
+            <div class="bloque-codigo-header"><span>${bloque.lenguaje || 'texto'}</span><button class="btn-copiar-codigo" data-codigo="${idx}">Copiar</button></div>
+            <pre><code>${codigoEscapado}</code></pre>
+        </div>`;
+    });
+
+    return { html: resultado, bloques };
+}
+
+// ---------- Construcción de la interfaz de mensajes ----------
+
+function crearFilaMensaje(texto, tipo) {
+    if (tipo === 'sistema') {
+        const fila = document.createElement('div');
+        fila.className = 'fila-sistema';
+        fila.textContent = texto;
+        mensajesInterior.appendChild(fila);
+        desplazarAbajo();
+        return fila;
+    }
+
+    const fila = document.createElement('div');
+    fila.className = 'fila-mensaje ' + tipo;
+
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar ' + tipo;
+    avatar.textContent = tipo === 'usuario' ? 'Tú' : 'C';
+
+    const contenido = document.createElement('div');
+    contenido.className = 'contenido-mensaje';
+
+    const textoDiv = document.createElement('div');
+    textoDiv.className = 'texto-mensaje';
+    textoDiv.textContent = texto;
+    contenido.appendChild(textoDiv);
+
+    fila.appendChild(avatar);
+    fila.appendChild(contenido);
+    mensajesInterior.appendChild(fila);
+    desplazarAbajo();
+
+    return { fila, contenido, textoDiv };
+}
+
+function renderizarRespuestaFinal(contenedor, textoCompleto) {
+    const { html, bloques } = renderizarMarkdownLigero(textoCompleto);
+    const textoDiv = contenedor.querySelector('.texto-mensaje');
+    textoDiv.innerHTML = html;
+
+    // Botones de copiar dentro de bloques de código
+    textoDiv.querySelectorAll('.btn-copiar-codigo').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const idx = parseInt(btn.dataset.codigo, 10);
+            copiarAlPortapapeles(bloques[idx].codigo, btn);
+        });
+    });
+
+    // Acciones del mensaje completo (copiar respuesta)
+    const acciones = document.createElement('div');
+    acciones.className = 'acciones-mensaje';
+    const btnCopiar = document.createElement('button');
+    btnCopiar.className = 'btn-accion';
+    btnCopiar.textContent = '⧉ Copiar';
+    btnCopiar.addEventListener('click', () => copiarAlPortapapeles(textoCompleto, btnCopiar, '✓ Copiado'));
+    acciones.appendChild(btnCopiar);
+    contenedor.appendChild(acciones);
+}
+
+function copiarAlPortapapeles(texto, boton, textoExito) {
+    const marcarExito = () => {
+        const original = boton.textContent;
+        boton.textContent = textoExito || 'Copiado';
+        setTimeout(() => { boton.textContent = original; }, 1500);
+    };
+    const marcarError = () => { boton.textContent = 'Error'; };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(marcarExito).catch(() => {
+            // Respaldo si la API moderna falla (ej. documento sin foco,
+            // algún navegador viejo, o restricciones del entorno)
+            if (copiarConRespaldo(texto)) marcarExito(); else marcarError();
+        });
+    } else if (copiarConRespaldo(texto)) {
+        marcarExito();
+    } else {
+        marcarError();
+    }
+}
+
+function copiarConRespaldo(texto) {
+    try {
+        const textarea = document.createElement('textarea');
+        textarea.value = texto;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        const exito = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        return exito;
+    } catch (e) {
+        return false;
+    }
+}
+
+function desplazarAbajo() {
+    mensajesDiv.scrollTop = mensajesDiv.scrollHeight;
+}
+
+function mostrarIndicadorEscribiendo() {
+    const { fila, contenido } = crearFilaMensaje('', 'asistente');
+    contenido.querySelector('.texto-mensaje').innerHTML =
+        '<div class="indicador-escribiendo"><span></span><span></span><span></span></div>';
+    return { fila, contenido };
+}
+
+// ---------- Lógica principal ----------
+
+async function verificarEstado() {
+    const resp = await fetch('/api/estado');
+    const datos = await resp.json();
+    if (!datos.logueado) {
+        window.location.href = '/login';
+        return;
+    }
+    document.getElementById('titulo-usuario').textContent = 'CORE';
+    document.getElementById('saludo-usuario').textContent = 'Hola, ' + datos.username;
+    if (!datos.ollama_disponible) {
+        crearFilaMensaje('⚠️ El modelo no está disponible ahora mismo (revisa que la laptop esté encendida).', 'sistema');
+    }
+    await cargarListaConversaciones(true);
+}
+
+async function cargarListaConversaciones(seleccionarPrimera) {
+    const resp = await fetch('/api/conversaciones');
+    if (!resp.ok) return;
+    const datos = await resp.json();
+    renderizarListaConversaciones(datos.conversaciones);
+
+    if (seleccionarPrimera && datos.conversaciones.length > 0) {
+        await seleccionarConversacion(datos.conversaciones[0].id);
+    }
+}
+
+function renderizarListaConversaciones(conversaciones) {
+    listaConversaciones.innerHTML = '';
+    for (const conv of conversaciones) {
+        const item = document.createElement('div');
+        item.className = 'item-conversacion' + (conv.id === conversacionActualId ? ' activa' : '');
+
+        const titulo = document.createElement('div');
+        titulo.className = 'item-conversacion-titulo';
+        titulo.textContent = conv.titulo || 'Nueva conversación';
+        item.appendChild(titulo);
+
+        const btnBorrar = document.createElement('button');
+        btnBorrar.className = 'btn-borrar-conversacion';
+        btnBorrar.textContent = '✕';
+        btnBorrar.title = 'Borrar conversación';
+        btnBorrar.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            await fetch(`/api/conversaciones/${conv.id}`, { method: 'DELETE' });
+            if (conv.id === conversacionActualId) {
+                conversacionActualId = null;
+                historial = [];
+                mensajesInterior.innerHTML = '';
+            }
+            await cargarListaConversaciones(false);
+        });
+        item.appendChild(btnBorrar);
+
+        item.addEventListener('click', () => { seleccionarConversacion(conv.id); cerrarSidebar(); });
+        listaConversaciones.appendChild(item);
+    }
+}
+
+async function seleccionarConversacion(id) {
+    conversacionActualId = id;
+    historial = [];
+    mensajesInterior.innerHTML = '';
+
+    const resp = await fetch(`/api/conversaciones/${id}/mensajes`);
+    if (resp.ok) {
+        const datos = await resp.json();
+        for (const mensaje of datos.historial) {
+            historial.push(mensaje);
+            if (mensaje.role === 'user') {
+                crearFilaMensaje(mensaje.content, 'usuario');
+            } else {
+                const { contenido } = crearFilaMensaje('', 'asistente');
+                renderizarRespuestaFinal(contenido, mensaje.content);
+            }
+        }
+    }
+    desplazarAbajo();
+    await cargarListaConversaciones(false);
+}
+
+async function enviarMensaje() {
+    const texto = input.value.trim();
+    if (!texto) return;
+
+    if (conversacionActualId === null) {
+        const resp = await fetch('/api/conversaciones', { method: 'POST' });
+        const datos = await resp.json();
+        conversacionActualId = datos.id;
+    }
+
+    crearFilaMensaje(texto, 'usuario');
+    historial.push({ role: 'user', content: texto });
+    input.value = '';
+    ajustarAlturaTextarea();
+    btnEnviar.disabled = true;
+
+    const { contenido } = mostrarIndicadorEscribiendo();
+
+    try {
+        const resp = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mensajes: historial, conversacion_id: conversacionActualId }),
+        });
+        const datos = await resp.json();
+        if (!resp.ok) {
+            contenido.querySelector('.texto-mensaje').textContent = '⚠️ ' + (datos.detail || 'Error al responder.');
+        } else {
+            renderizarRespuestaFinal(contenido, datos.respuesta);
+            historial.push({ role: 'assistant', content: datos.respuesta });
+            await cargarListaConversaciones(false);
+        }
+    } catch (err) {
+        contenido.querySelector('.texto-mensaje').textContent = '⚠️ No se pudo conectar con el servidor.';
+    }
+
+    desplazarAbajo();
+    btnEnviar.disabled = false;
+    input.focus();
+}
+
+function ajustarAlturaTextarea() {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 160) + 'px';
+}
+
+input.addEventListener('input', ajustarAlturaTextarea);
+input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        enviarMensaje();
+    }
+});
+btnEnviar.addEventListener('click', enviarMensaje);
+
+btnNuevo.addEventListener('click', async () => {
+    conversacionActualId = null;
+    historial = [];
+    mensajesInterior.innerHTML = '';
+    cerrarSidebar();
+    await cargarListaConversaciones(false);
+});
+
+btnLogout.addEventListener('click', async () => {
+    await fetch('/api/logout', { method: 'POST' });
+    window.location.href = '/login';
+});
+
+verificarEstado();
+</script>
+</body>
+</html>

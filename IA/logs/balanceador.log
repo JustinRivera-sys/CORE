@@ -1,0 +1,144 @@
+Balanceador de carga del clúster iniciando en el puerto 5000...
+Nodos configurados: ['mini_pc', 'raspberry_pi']
+ * Serving Flask app 'balanceador'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.24:5000
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [03/Oct/2026 22:14:04] "GET /salud HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2026 22:14:06] "GET /salud HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2026 22:14:23] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [03/Oct/2026 22:15:34] "GET /salud HTTP/1.1" 200 -
+192.168.10.1 - - [03/Oct/2026 22:16:20] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [03/Oct/2026 22:16:27] "POST /api/chat HTTP/1.1" 200 -
+192.168.10.1 - - [03/Oct/2026 22:16:32] "POST /api/chat HTTP/1.1" 200 -
+192.168.10.1 - - [03/Oct/2026 22:16:57] "POST /api/chat HTTP/1.1" 200 -
+192.168.10.1 - - [04/Oct/2026 00:09:21] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [04/Oct/2026 00:09:54] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [04/Oct/2026 00:10:01] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:10:15] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [04/Oct/2026 00:10:23] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:10:25] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:11:23] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [04/Oct/2026 00:13:27] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [04/Oct/2026 00:13:28] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [04/Oct/2026 00:13:38] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [04/Oct/2026 00:16:40] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [04/Oct/2026 00:16:59] "POST /api/chat HTTP/1.1" 200 -
+Balanceador de carga del clúster iniciando en el puerto 5000...
+Nodos configurados: ['mini_pc', 'raspberry_pi']
+ * Serving Flask app 'balanceador'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.24:5000
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [04/Oct/2026 00:22:13] "GET /salud HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:22:29] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [04/Oct/2026 00:22:35] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [04/Oct/2026 00:22:41] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:31:47] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [04/Oct/2026 00:31:57] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:31:59] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:32:07] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [04/Oct/2026 00:32:49] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:32:50] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:33:02] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [04/Oct/2026 00:33:12] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:33:13] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:33:20] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [04/Oct/2026 00:33:29] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [04/Oct/2026 00:33:33] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2026 00:33:36] "POST /api/chat HTTP/1.1" 200 -
+Balanceador de carga del clúster iniciando en el puerto 5000...
+Nodos configurados: ['mini_pc', 'raspberry_pi']
+ * Serving Flask app 'balanceador'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [07/Oct/2026 21:32:43] "GET /salud HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 21:39:49] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 21:39:49] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 21:39:56] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 21:40:10] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 21:40:17] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 21:40:23] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 21:40:26] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 21:40:44] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 21:42:46] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 21:42:53] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 21:42:54] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 21:44:03] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 21:44:09] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 21:44:16] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 21:52:43] "GET /salud HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 21:52:43] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [07/Oct/2026 21:55:41] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 21:57:08] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 21:57:18] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 21:57:25] "POST /api/chat HTTP/1.1" 200 -
+192.168.10.1 - - [07/Oct/2026 21:59:53] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [07/Oct/2026 22:00:22] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [07/Oct/2026 22:00:29] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [07/Oct/2026 22:00:33] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [07/Oct/2026 22:01:03] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [07/Oct/2026 22:01:05] "POST /api/chat HTTP/1.1" 200 -
+192.168.10.1 - - [07/Oct/2026 22:01:12] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:01:21] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [07/Oct/2026 22:01:25] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:01:28] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:01:44] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:01:51] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [07/Oct/2026 22:01:57] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:02:29] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:02:57] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:03:01] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:03:56] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:04:21] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:04:29] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:04:33] "POST /api/chat HTTP/1.1" 200 -
+192.168.10.1 - - [07/Oct/2026 22:04:53] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:06:32] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:06:38] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:06:45] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:13:09] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:13:21] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [07/Oct/2026 22:13:31] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:13:38] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:13:46] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:13:51] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:13:53] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:13:57] "POST /api/chat HTTP/1.1" 200 -
+192.168.10.1 - - [07/Oct/2026 22:14:29] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:14:55] "[33mGET / HTTP/1.1[0m" 404 -
+192.168.10.1 - - [07/Oct/2026 22:15:25] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:15:31] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:15:32] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:15:42] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:26:34] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:36:36] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:36:51] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:36:54] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:43:04] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:43:13] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:43:20] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:44:44] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:50:29] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 22:50:43] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 22:50:45] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 23:01:06] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 23:01:16] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 23:01:18] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 23:05:07] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 23:05:22] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 23:05:27] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 23:05:29] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 23:13:42] "[33mGET / HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Oct/2026 23:13:50] "POST /api/chat HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 23:13:57] "POST /api/chat HTTP/1.1" 200 -
