@@ -345,11 +345,10 @@ La inferencia corre solo en CPU, sin GPU, por diseño. El tiempo de respuesta de
 Proyecto Final Integrador: *Diseño, montaje e implementación de un clúster de edge computing para inferencia de IA local autónoma*. Caso de uso elegido: **Caso 3 — Procesamiento de lenguaje para asistencia local** (modelo de lenguaje pequeño cuantizado a 4 bits).
 
 ## Autores
-
-- Nombre 1
-- Nombre 2
-- Nombre 3
-- Nombre 4
+Justin Daniel Rivera López
+Jose Estuardo0 Aquino Quiquivix
+Diego Gabriel Ventura Ochoa
+Donalson José Calderón Mazariegos 
 
 ## Licencia
 
